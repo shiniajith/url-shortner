@@ -14,6 +14,9 @@ urlRoute.post("/create-url", async (req, res) => {
 urlRoute.get("/url/:key", async (req, res) => {
   const key = req.params.key;
   const url = await urlService.fetchUrlByKey(key);
+  if (url === null) {
+    return res.render("invalidUrl");
+  }
   res.redirect(url.orginalUrl);
 });
 
