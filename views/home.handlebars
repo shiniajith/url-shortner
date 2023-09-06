@@ -1,22 +1,58 @@
-<h2>Enter the URL and Submit</h2>
-
-<div class="container">
-  <form method="post" action="/create-url">
-    <div class="row">
-      <div class="col-*12*">
-        <div class="input-group flex-nowrap">
-
+<div class="url-box">
+  <section class="url-box__header">
+    <h1 class="url-box__header-title">Free URL Shortner</h1>
+    <p class="url-box__header-desc">Use this tool to create memorable and simple
+      URl from long winded URLs</p>
+  </section>
+  <section class="url-box__input-area">
+    <form method="post" action="/create-url">
+      <div class="url-box__input-area-container">
+        <div class="url-box__input-area-text">
           <input
             type="text"
-            name="url"
-            class="form-control"
-            placeholder="enter url"
+            name="orginalUrl"
+            class="url-box__input-area-txt-input"
+            placeholder="Enter URL"
           />
-
+        </div>
+        <div class="url-box__input-area-btn">
+          <button
+            type="submit"
+            class="url-box__btn url-box__btn--submit"
+          >Submit</button>
         </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <p>http://localhost:3000/url/{{newUrl}}</p>
+    </form>
+  </section>
+  <section class="url-box__result">
+    {{#if newUrl}}
+      <div class="url-box__result-user-url">
+        <span class="url-box__result-user-url-title">Your URL: </span>
+        <a
+          class="url-box__result-user-url-link"
+          href="{{newUrl.orginalUrl}}"
+        >http://localhost:3000/original-url
+          {{newUrl.orginalUrl}}</a>
+      </div>
+
+      <div class="url-box__result-short-url-container">
+        <div class="url-box__short-url">
+          <a
+            class="url-box__short-url-link"
+            href="http://localhost:3000/url/{{newUrl.key}}"
+          >
+            http://localhost:3000/url/
+            {{newUrl.key}}</a>
+        </div>
+        <div class="url-box__copy-btn-area">
+          <button
+            id="clipboardCopy"
+            data-value=" http://localhost:3000/url/
+            {{newUrl.key}}"
+            class="url-box__btn"
+          >Copy</button>
+        </div>
+      </div>
+    {{/if}}
+  </section>
 </div>

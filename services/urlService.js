@@ -11,19 +11,19 @@ async function getNewKey() {
   return newKey;
 }
 
-async function createNewURL(url) {
-  const urlObj = getUrlByOrginalUrl(url);
+async function createNewURL(orginalUrl) {
+  const urlObj = await getUrlByOrginalUrl(orginalUrl);
   if (urlObj) {
     return urlObj;
   }
 
-  const newKey = getNewKey();
+  const newKey = await getNewKey();
 
   const data = {
-    orginalUrl: url,
+    orginalUrl: orginalUrl,
     key: newKey,
   };
-
+  //  CREATES DATA IN DB
   const newUrl = await UrlModel.create(data);
 
   return newUrl;
