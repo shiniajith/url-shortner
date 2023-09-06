@@ -3,7 +3,6 @@ const { engine } = require("express-handlebars");
 const urlRoute = require("./routes/url");
 const session = require("express-session");
 const Filestore = require("session-file-store")(session);
-const fileStoreOptions = {};
 
 const app = express();
 
@@ -16,7 +15,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    store: new Filestore(fileStoreOptions),
+    store: new Filestore({}),
   })
 );
 app.use(express.json());
